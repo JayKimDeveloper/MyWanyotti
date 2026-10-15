@@ -1,0 +1,71 @@
+config_version = 1
+assumption_status = "RESEARCH_EXAMPLE_NOT_HISTORICALLY_VERIFIED"
+
+[market]
+exchange = "BitMEX"
+websocket_url = "wss://ws.bitmex.com/realtime"
+connect_timeout_seconds = 10.0
+receive_timeout_seconds = 1.0
+ping_interval = "20s"
+reconnect_initial = "1s"
+reconnect_max = "60s"
+
+[decision]
+interval = "5min"
+lag = "2s"
+
+[features]
+lookback = "5min"
+max_quote_age = "30s"
+reconciliation_atol = 1e-9
+
+[state]
+sqlite_path = "data/runtime/paper_xbtusd.sqlite3"
+market_retention = "15min"
+
+[portfolio]
+initial_equity = 1.0
+initial_position_contracts = 0
+
+[strategy]
+contracts_per_action = 1000
+invalid_action_policy = "NO_ORDER"
+
+[execution]
+latency_ms = 250
+max_fill_wait_ms = 2000
+base_fill_probability = 0.95
+slippage_bps = 2.0
+max_top_of_book_participation = 0.10
+allow_partial_fills = true
+random_seed = 42
+
+[fees]
+taker_rate = 0.00075
+
+[funding]
+mode = "disabled"
+rate = 0.0
+interval_hours = 8
+offset_hour_utc = 4
+
+[risk]
+liquidation_model = "disabled"
+stop_on_nonpositive_equity = true
+max_abs_position_contracts = 10000
+max_session_loss_settlement = 0.05
+loss_limit_policy = "REDUCE_ONLY"
+
+[cost_sensitivity]
+multipliers = [1.0]
+
+[instruments.XBTUSD]
+contract_type = "inverse"
+quantity_unit = "CONTRACTS"
+price_currency = "USD"
+settlement_currency = "XBt"
+lot_size_contracts = 100
+price_tick_size = 0.1
+contract_value_quote = 1.0
+linear_multiplier = 0.0
+pnl_formula = "position * contract_value_quote * (1 / entry_price - 1 / exit_price)"

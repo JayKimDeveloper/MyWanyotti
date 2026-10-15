@@ -1,0 +1,15 @@
+[project]
+name = "wonyotti-behavior-research"
+version = "0.1.0"
+description = "Offline research tooling for historical execution behavior"
+requires-python = "==3.13.*"
+dependencies = [
+  "catboost==1.2.10",
+  "pandas==3.0.6",
+  "pyarrow==25.0.1",
+  "websocket-client==1.9.2",
+]
+
+[tool.wonyotti]
+catboost-task-type = "CPU"
+raw-data-dir = "data/raw"
