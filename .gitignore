@@ -34,3 +34,9 @@ mlruns/
 *.onnx
 *.pkl
 *.joblib
+
+# Generated local paper-replay database and transient SQLite sidecars
+paper_replay.sqlite3
+paper_replay.sqlite3-wal
+paper_replay.sqlite3-shm
+paper_replay.sqlite3-journal
